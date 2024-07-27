@@ -15,7 +15,7 @@
 
 ### 1. Llama.cppの準備
 
-1. **ダウンロード:** Llama.cppのGitHubリリースページ（https://github.com/ggerganov/llama.cpp/releases ）にアクセスし、最新版の`llama-<version>-win-x64-openblas.zip`をダウンロードします。
+1. **ダウンロード:** Llama.cppのGitHubリリースページ（https://github.com/ggerganov/llama.cpp/releases ）にアクセスし、最新版の`llama-<version>-bin-win-openblas-x64.zip`をダウンロードします。
 2. **解凍:** ダウンロードしたZIPファイルを任意のフォルダに解凍します。
 
 ```mermaid
@@ -30,7 +30,7 @@ graph LR
 
 ### 2. Phi-3 miniモデルのダウンロード
 
-1. **Hugging Faceモデルページへアクセス:**  HuggingFaceのPhi-3 miniページ（https://huggingface.co/microsoft/phi-3-mini ）を開きます。
+1. **Hugging Faceモデルページへアクセス:**  HuggingFaceのPhi-3 miniページ（[https://huggingface.co/microsoft/phi-3-mini](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf) ）を開きます。
 2. **モデルファイルのダウンロード:** 「Files and versions」タブから、`Phi-3-mini-4k-instruct-q4.gguf`をダウンロードします。
 3. **配置:** ダウンロードしたモデルファイルを、Llama.cppを解凍したフォルダに配置します。
 
@@ -50,7 +50,7 @@ graph LR
 2. **サーバー起動コマンドの実行:** 以下のコマンドを実行し、サーバーを起動します。
 
     ```bash
-    server.exe -m Phi-3-mini-4k-instruct-q4.gguf --host 127.0.0.1 --port 8080
+    llama-server.exe -m Phi-3-mini-4k-instruct-q4.gguf -ngl 0 -c 256 -n -1 -t 2 --host 127.0.0.1 --port 8085
     ```
 
 ```mermaid
@@ -60,8 +60,8 @@ graph LR
     end
 
     subgraph サーバー起動
-        B --> C((server.exeを実行))
-        C --> D((ポート8080でリスン開始))
+        B --> C((llama-server.exeを実行))
+        C --> D((ポート8085でリスン開始))
     end
 
 ```
@@ -75,7 +75,7 @@ graph LR
 2. **チャット開始コマンドの実行:** 以下のcurlコマンドを実行し、チャットを開始します。
 
     ```bash
-    curl -X POST http://localhost:8080/v1/chat/completions -H "Content-Type: application/json" -d "{\"messages\": [{\"role\": \"user\", \"content\": \"こんにちは、自己紹介してください。\"}], \"model\": \"gpt-3.5-turbo\"}"
+    curl -X POST http://localhost:8085/v1/chat/completions -H "Content-Type: application/json" -d "{\"messages\": [{\"role\": \"user\", \"content\": \"こんにちは、自己紹介してください。\"}], \"model\": \"gpt-3.5-turbo\"}"
     ```
 
 3. **応答の確認:** サーバーから応答が返されます。
