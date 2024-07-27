@@ -1,0 +1,2 @@
+# doc_genai_Run_local_LLM_with_Llama.cpp_and_Phi-3_mini
+ローカルLLMをLlama.cppとPhi-3_mini_で動かす
