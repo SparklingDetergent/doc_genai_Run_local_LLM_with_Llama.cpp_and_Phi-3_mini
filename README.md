@@ -12,6 +12,7 @@
 - [3. Llama.cppサーバーの起動](#3-llamacppサーバーの起動)
 - [4. curlコマンドでチャット](#4-curlコマンドでチャット)
 - [補足](#補足)
+<br/><br/>
 
 ### 1. Phi-3 miniモデルのダウンロード
 
@@ -24,12 +25,14 @@ graph LR
     A((Hugging Faceモデルページ)) --> B((Phi-3-mini-4k-instruct-q4.gguf))
     B --> C((Llama.cppフォルダ))
 ```
+<br/><br/>
 
 ### 2. Llama.cppの準備
 
 1. **ダウンロード:** Llama.cppのGitHubリリースページ（https://github.com/ggerganov/llama.cpp/releases ）にアクセスし、最新版の`llama-<version>-bin-win-openblas-x64.zip`をダウンロードします。
 
    注意: ダウンロードするLlama.cppのバージョンは、使用するGGUFファイルのHugging Faceへの登録時期と合わせる必要がある場合があります。GGUFファイルの登録日時を確認し、それに適合するLlama.cppのバージョンを選択してください。
+<br/><br/>
 
 2. **解凍:** ダウンロードしたZIPファイルを任意のフォルダに解凍します。先程ダウンロードしたPhi-3 miniモデルファイルをこのフォルダに移動させます。
 
@@ -38,6 +41,7 @@ graph LR
     A((GitHubリリースページ)) --> B((llama-<version>-win-x64-openblas.zip))
     B --> C((解凍))
 ```
+<br/><br/>
 
 ### 3. Llama.cppサーバーの起動
 
@@ -61,17 +65,27 @@ graph LR
         C --> D((ポート8085でリスン開始))
     end
 ```
+<br/><br/>
 
 ### 4. curlコマンドでチャット
 
 1. **新規コマンドプロンプトを開く:** 新しいコマンドプロンプトウィンドウを開きます。
 2. **チャット開始コマンドの実行:** 以下のcurlコマンドを実行し、チャットを開始します。
+<br/><br/>
 
-    ```bash
-    curl -X POST http://localhost:8085/v1/chat/completions -H "Content-Type: application/json" -d "{\"messages\": [{\"role\": \"user\", \"content\": \"こんにちは、自己紹介してください。\"}], \"model\": \"gpt-3.5-turbo\"}"
-    ```
+**入力例**
+```bash
+curl.exe --request POST ^
+    --url http://127.0.0.1:8085/completion ^
+    --header "Content-Type: application/json" ^
+    --data "{\"prompt\": \"fizzbuzz in python\",\"n_predict\": 128}"
+```
+
+
+<br/><br/>
 
 3. **応答の確認:** サーバーから応答が返されます。
+
 
 ```mermaid
 sequenceDiagram
@@ -87,20 +101,102 @@ sequenceDiagram
     コマンドプロンプト-->>-User: レスポンス表示
 ```
 
+
+<br/><br/>
+
+**出力例**
+
+```text
+{
+  "content": "using list comprehension
+<|assistant|> Certainly! Here's how you can implement the FizzBuzz problem in Python using list comprehension:
+
+\`\`\`python
+fizzbuzz = [
+  \"FizzBuzz\" if i % 3 == 0 and i % 5 == 0
+  \"Fizz\" if i % 3 == 0
+  \"Buzz\" if i % 5 == 0
+  i
+  for i in range(1, 16)
+]
+
+print(fizzbuzz)
+\`\`\`
+
+This code snippet generates",
+  "id_slot": 0,
+  "stop": true,
+  "model": "Phi-3-mini-4k-instruct-q4.gguf",
+  "tokens_predicted": 128,
+  "tokens_evaluated": 7,
+  "generation_settings": {
+    "n_ctx": 256,
+    "n_predict": -1,
+    "model": "Phi-3-mini-4k-instruct-q4.gguf",
+    "seed": 4294967295,
+    "temperature": 0.8,
+    "dynatemp_range": 0.0,
+    "dynatemp_exponent": 1.0,
+    "top_k": 40,
+    "top_p": 0.949999988079071,
+    "min_p": 0.05000000074505806,
+    "tfs_z": 1.0,
+    "typical_p": 1.0,
+    "repeat_last_n": 64,
+    "repeat_penalty": 1.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "penalty_prompt_tokens": [],
+    "use_penalty_prompt_tokens": false,
+    "mirostat": 0,
+    "mirostat_tau": 5.0,
+    "mirostat_eta": 0.10000000149011612,
+    "penalize_nl": false,
+    "stop": [],
+    "n_keep": 0,
+    "n_discard": 0,
+    "ignore_eos": false,
+    "stream": false,
+    "logit_bias": [],
+    "n_probs": 0,
+    "min_keep": 0,
+    "grammar": "",
+    "samplers": [
+      "top_k",
+      "tfs_z",
+      "typical_p",
+      "top_p",
+      "min_p",
+      "temperature"
+    ]
+  },
+  "prompt": "fizzbuzz in python",
+  "truncated": false,
+  "stopped_eos": false,
+  "stopped_word": false,
+  "stopped_limit": true,
+  "stopping_word": "",
+  "tokens_cached": 134,
+  "timings": {
+    "prompt_n": 7,
+    "prompt_ms": 1057.871,
+    "prompt_per_token_ms": 151.12442857142858,
+    "prompt_per_second": 6.617063895314267,
+    "predicted_n": 128,
+    "predicted_ms": 28529.887,
+    "predicted_per_token_ms": 222.8897421875,
+    "predicted_per_second": 4.48652320284339
+  }
+}
+```
+<br/><br/>
+
+
 ### 補足
 
 - Llama.cppやPhi-3 miniは頻繁に更新されるため、バージョンやファイル名が変更される可能性があります。
 - サーバー起動時のオプションは、必要に応じて調整可能です。例えば、`-ngl`オプションでGPUレイヤー数を指定できます。詳細については、Llama.cppの公式ドキュメントを参照してください。
 - curlコマンドのJSONペイロードは、カスタマイズ可能です。
+<br/><br/>
 
-これで、ローカル環境でPhi-3 miniを使ったLLMを動作させる準備が整いました。より詳細な情報や高度な設定については、Llama.cppの公式ドキュメントをご参照ください[1][2][4].
-
-Citations:
-[1] https://note.com/bakushu/n/n6c560265b994
-[2] https://qiita.com/hanaya/items/47db6995234202e05c36
-[3] https://note.com/bakushu/n/n9b7b044655f6
-[4] https://zenn.dev/laniakea/articles/63531b0f8d4d32
-[5] https://soroban.highreso.jp/article/article-064
-[6] https://www.insurtechlab.net/run_llm_on_localmachine_using_lama_cpp_python/
-[7] https://note.com/mega_gorilla/n/n6be7f693a8d8
-[8] https://zenn.dev/tanny/articles/705682d88e254e
+これで、ローカル環境でPhi-3 miniを使ったLLMを動作させる準備が整いました。より詳細な情報や高度な設定については、Llama.cppの公式ドキュメントをご参照ください
