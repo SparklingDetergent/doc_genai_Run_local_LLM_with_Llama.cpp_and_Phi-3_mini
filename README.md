@@ -55,7 +55,11 @@ graph LR
     ```
 
    注意: 過去のバージョンのLlama.cppでは、サーバー起動コマンドが`server.exe`である場合があります。使用するバージョンに応じてコマンドを調整してください。
+    ```bash
+    server.exe -m Phi-3-mini-4k-instruct-q4.gguf -ngl 0 -c 256 -n -1 -t 2 --host 127.0.0.1 --port 8085
+    ```
 
+<br/><br/>
 ```mermaid
 graph LR
     subgraph コマンドプロンプト
@@ -75,6 +79,7 @@ graph LR
 2. **チャット開始コマンドの実行:** 以下のcurlコマンドを実行し、チャットを開始します。
 <br/><br/>
 
+#### on Windows curl
 **入力例**
 ```bash
 curl.exe --request POST ^
@@ -82,6 +87,17 @@ curl.exe --request POST ^
     --header "Content-Type: application/json" ^
     --data "{\"prompt\": \"fizzbuzz in python\",\"n_predict\": 128}"
 ```
+
+<br/><br/>
+#### on Linux ( Ubuntu )  curl
+**入力例**
+```bash
+curl --request POST \
+    --url http://127.0.0.1:8085/completion \
+    --header "Content-Type: application/json" \
+    --data "{\"prompt\": \"fizzbuzz in python\",\"n_predict\": 128}"
+```
+
 
 
 <br/><br/>
