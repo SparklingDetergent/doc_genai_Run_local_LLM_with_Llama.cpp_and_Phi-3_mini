@@ -20,8 +20,9 @@
 
 ```mermaid
 graph LR
-    A[GitHubリリースページ] --> +B(llama-<version>-win-x64-openblas.zip)
-    B --> +C(解凍)
+    A((GitHubリリースページ)) --> B((llama-<version>-win-x64-openblas.zip))
+    B --> C((解凍))
+
 ```
 
 <br/><br/>
@@ -35,8 +36,9 @@ graph LR
 
 ```mermaid
 graph LR
-    A[Hugging Faceモデルページ] --> +B(Phi-3-mini-4k-instruct-q4.gguf)
-    B --> +C(Llama.cppフォルダ)
+    A((Hugging Faceモデルページ)) --> B((Phi-3-mini-4k-instruct-q4.gguf))
+    B --> C((Llama.cppフォルダ))
+
 ```
 
 <br/><br/>
@@ -53,9 +55,15 @@ graph LR
 
 ```mermaid
 graph LR
-    A[コマンドプロンプト] --> +B(Llama.cppフォルダ)
-    B --> +C{server.exe 実行}
-    C --> D((ポート8080で起動))
+    subgraph コマンドプロンプト
+        A((コマンドプロンプトを開く)) --> B((Llama.cppフォルダに移動))
+    end
+
+    subgraph サーバー起動
+        B --> C((server.exeを実行))
+        C --> D((ポート8080でリスン開始))
+    end
+
 ```
 
 <br/><br/>
