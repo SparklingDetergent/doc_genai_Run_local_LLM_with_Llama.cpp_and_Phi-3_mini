@@ -31,7 +31,9 @@ graph LR
 
 1. **ダウンロード:** Llama.cppのGitHubリリースページ（https://github.com/ggerganov/llama.cpp/releases ）にアクセスし、最新版の`llama-<version>-bin-win-openblas-x64.zip`をダウンロードします。
 
-   注意: ダウンロードするLlama.cppのバージョンは、使用するGGUFファイルのHugging Faceへの登録時期と合わせる必要がある場合があります。GGUFファイルの登録日時を確認し、それに適合するLlama.cppのバージョンを選択してください。
+   **注意**: ダウンロードするLlama.cppのバージョンは、使用するGGUFファイルのHugging Faceへの登録時期と合わせる必要がある場合があります。GGUFファイルの登録日時を確認し、それに適合するLlama.cppのバージョンを選択してください。<br/>
+         （実際に、現時点（2024/07）の「Phi-3-mini-4k-instruct-q4.gguf」は、2024/04/22にリリースされており、これに対して現時点（2024/07）のLlama.cppでは起動時にエラー（原因は未確認）となるので、過去（2024/06/01頃）のLlama.cppをダウンロードする必要があります。<br/>
+
 <br/><br/>
 
 2. **解凍:** ダウンロードしたZIPファイルを任意のフォルダに解凍します。先程ダウンロードしたPhi-3 miniモデルファイルをこのフォルダに移動させます。
@@ -104,8 +106,10 @@ sequenceDiagram
 
 <br/><br/>
 
-**出力例**
-
+**出力例** <br/>
+下記は視認性を高めるために"content"についてエスケープされた改行を編集し記述しています。。<br/>
+実際には、json形式で出力されます。<br/>
+<br/>
 ```text
 {
   "content": "using list comprehension
