@@ -218,6 +218,8 @@ This code snippet generates",
 ### 補足
 
 - Llama.cppやPhi-3 miniは頻繁に更新されるため、バージョンやファイル名が変更される可能性があります。
+- 2024/08/03 時点では「lmstudio-community/Phi-3.1-mini-4k-instruct-GGUF (https://huggingface.co/lmstudio-community/Phi-3.1-mini-4k-instruct-GGUF) 」や「lmstudio-community/gemma-2-2b-it-GGUF (https://huggingface.co/lmstudio-community/gemma-2-2b-it-GGUF) 」のような最新の生成AIモデルのgguf形式ファイル提供元が存在し、最新の動向を常にチェックする必要があります。
+- 2024/08/03 時点では、「https://huggingface.co/spaces/ggml-org/gguf-my-repo (https://huggingface.co/spaces/ggml-org/gguf-my-repo) 」のようなスペースにより、自身でgguf形式ファイルを取得することもできます。
 - サーバー起動時のオプションは、必要に応じて調整可能です。例えば、`-ngl`オプションでGPUレイヤー数を指定できます。詳細については、Llama.cppの公式ドキュメントを参照してください。
 - curlコマンドのJSONペイロードは、カスタマイズ可能です。
 <br/><br/>
