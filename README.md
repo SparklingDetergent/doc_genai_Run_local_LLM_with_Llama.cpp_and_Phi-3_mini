@@ -14,6 +14,7 @@ Llama.cppサーバーに対するクライアントスクリプトの実装例�
 - [2. Llama.cppの準備](#2-llamacppの準備)
 - [3. Llama.cppサーバーの起動](#3-llamacppサーバーの起動)
 - [4. curlコマンドでチャット](#4-curlコマンドでチャット)
+- [5. Web UI でチャット](#5-Web UI でチャット)
 - [補足](#補足)
 <br/><br/>
 
@@ -226,6 +227,10 @@ This code snippet generates",
 ```
 <br/><br/>
 
+<br/><br/>
+
+### 5. Web UI でチャット
+- 例として「http://127.0.0.1:8085/」へアクセスすることで、Llama.cpp が提供するシンプルな Web UI を利用することができます。
 
 ### 補足
 
