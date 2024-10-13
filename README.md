@@ -4,7 +4,10 @@
 
 ## Llama.cppとPhi-3 miniでローカルLLMを動かす手順
 
-本稿では、Llama.cppとPhi-3 miniを用いて、ローカル環境にLLMを構築する手順を解説します。
+本稿では、Llama.cppとPhi-3 miniを用いて、ローカル環境にLlama.cppサーバーを構築する手順を解説します。
+<br/><br/>
+Llama.cppサーバーに対するクライアントスクリプトの実装例は（[github.com/SparklingDetergent/doc_genai_Run_local_LLM_with_Llama.cpp_and_Phi-3_mini]([https://github.com/SparklingDetergent/doc_genai_Run_local_LLM_with_Llama.cpp_and_Phi-3_mini](https://github.com/SparklingDetergent/src_genai_Script_to_use_local_LLM_with_llama.cpp_and_PowerShell)/blob/main/README.md) ）をご参照ください。
+<br/><br/>
 
 ### 目次
 - [1. Phi-3 miniモデルのダウンロード](#1-phi-3-miniモデルのダウンロード)
