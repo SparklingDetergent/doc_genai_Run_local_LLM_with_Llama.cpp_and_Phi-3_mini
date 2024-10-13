@@ -228,10 +228,10 @@ This code snippet generates",
 <br/><br/>
 
 <br/><br/>
-
 ### 5. Web UI でチャット
 - 例として「http://127.0.0.1:8085/」へアクセスすることで、Llama.cpp が提供するシンプルな Web UI を利用することができます。
 
+<br/><br/>
 ### 補足
 
 - Llama.cppやPhi-3 miniは頻繁に更新されるため、バージョンやファイル名が変更される可能性があります。
